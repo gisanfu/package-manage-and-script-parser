@@ -1,0 +1,41 @@
+/*
+ * EXAMPLE
+ */
+
+<< test01-packagelist.txt >>
+
+pgsql,postgresql-8.4.1.tar.gz,,http://wwwmaster.postgresql.org/redir/161/f/source/v8.4.1/postgresql-8.4.1.tar.gz
+jpeg,jpegsrc.v7.tar.gz,jpeg-7,http://www.ijg.org/files/jpegsrc.v7.tar.gz
+
+<< test01-template.txt >>
+
+tar zxf %pgsql_package%
+cd %pgsql_unzipdir%
+./configure --prefix=/usr/local/pgsql && make && sudo make install
+cd ..
+
+tar zxf %jpeg_package%
+cd %jpeg_unzipdir%
+./configure --enable-shared --enable-static && make && sudo make install
+cd ..
+
+<< run parse.pl >>
+
+$ perl parse.pl test01
+parse wget.sh success
+parse runscript success
+
+$ ls
+parse.pl
+test01-packagelist.txt
+test01-template.txt
+-> test01-wget.sh
+-> test01-runscript.sh
+
+<< ok~ goto download package and install program >>
+
+$ bash test01-wget.sh
+blha blha...
+
+$ bash test01-runscript.sh
+blha blha...
