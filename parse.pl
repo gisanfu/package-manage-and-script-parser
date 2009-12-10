@@ -29,7 +29,7 @@ unless( -f $template ){
 # load txt to variable
 open(FH,$packagelist);
 while(<FH>){
-	next if $_ =~ /^#/;
+	next if $_=~/^#/;
 	next unless $_ =~ /^(.*)\,(.*)\,(.*)\,(.*)$/;
 	#push @wgets,$3;
 	$Package{$1}  = $2;
@@ -57,7 +57,7 @@ print 'parse ' . $wgetfile . ' success'."\n";
 open(FH,$template);
 while(<FH>){
 	$_ =~ s/\n$//;
-	next if $_ =~ /^#/;
+	next if( ($_ =~ /^#/) and ($_ !~ /^#!\//) );
 	next if $_ eq '';
 	push @installs,$_;
 }# end while
